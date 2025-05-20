@@ -28,7 +28,7 @@ var options = {
   requireInteraction: true
 };
 
-  var n = new Notification(`Job ${job} finished`, options);
+  var n = new Notification(`${job} finished`, options);
   n.onclick = function () {
   window.close()
 }
