@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>闪烁标题示例</title>
+<script>
+function getQueryVariable(variable)
+{
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
+}
+//https://www.runoob.com/index.php?id=1&image=awesome.jpg
+// 调用 getQueryVariable("id") 返回 1。
+//调用 getQueryVariable("image") 返回 "awesome.jpg"。
+//rstudioapi::viewer("../../pub/notice.html?job=abc&time=def") #搞个网页提醒
+//alert(getQueryVariable("job") )
+function sendNotification(job) { 
+var options = {
+    body: Date(), // 通知的正文
+      // 通知id  通知的ID，默认 tag 为空。当 tag 相同时，重复构造实例，新通知会替换旧通知。反之，通知不会替换，而是像楼层一样叠加。同样的，忽略 tag 属性，通知也不会替换。
+  //tag: job,
+  // 是否一直保持有效  通知是否保持，不会自动关闭。默认为 false，会自动关闭。当设置为 true 时，由用户手动关闭或调用实例的 close 方法进行关闭。
+  requireInteraction: true
+};
+
+  var n = new Notification("Job finished", options);
+  n.onclick = function () {
+  window.close()
+}
+}
+
+job=getQueryVariable("job")
+sendNotification(job)
+
+var i=1
+var timer=setInterval(function(){
+	document.title="🚨 " +i;
+setTimeout(function(){document.title="     " },500)
+	i=i+1
+},1000);
+</script>
+</head>
+<body>
+  <h1>浏览器标签闪烁示例</h1>
+  <p>点击页面任意位置开始或停止标题闪烁。</p>
+  <input type="button", onclick="clearInterval(timer)" value="stop">
+</body>
+</html>
+
