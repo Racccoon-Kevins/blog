@@ -18,12 +18,12 @@ function getQueryVariable(variable)
 // 调用 getQueryVariable("id") 返回 1。
 //调用 getQueryVariable("image") 返回 "awesome.jpg"。
 //rstudioapi::viewer("../../pub/notice.html?job=abc&time=def") #搞个网页提醒
-//alert(getQueryVariable("job") )
+alert(getQueryVariable("job") )
 function sendNotification(job) { 
 var options = {
     body: Date(), // 通知的正文
       // 通知id  通知的ID，默认 tag 为空。当 tag 相同时，重复构造实例，新通知会替换旧通知。反之，通知不会替换，而是像楼层一样叠加。同样的，忽略 tag 属性，通知也不会替换。
-  //tag: job,
+  tag: job,
   // 是否一直保持有效  通知是否保持，不会自动关闭。默认为 false，会自动关闭。当设置为 true 时，由用户手动关闭或调用实例的 close 方法进行关闭。
   requireInteraction: true
 };
